@@ -1,9 +1,13 @@
 name: CI Pipeline
 
 on:
-  # Manual trigger for the workflow
-  workflow_dispatch:
+  # Run CI automatically when code is pushed to main
+  push:
+    branches:
+      - main
 
+  # Also allow manual execution
+  workflow_dispatch:
 
 jobs:
 
@@ -78,10 +82,10 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -137,7 +141,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Login to Azure
         uses: azure/login@v2
